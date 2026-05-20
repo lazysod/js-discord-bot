@@ -1,0 +1,9 @@
+{
+    
+    "ranks":{
+        "muted": "Muted",
+        "suspended": "SUSPENDED",
+        "voice":  "Voice",
+        "member": "Member"
+    }
+}

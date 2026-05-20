@@ -1,0 +1,21 @@
+{
+    "guild_id": "",
+    "version": "0.1.2",
+    "prefix": "$",
+    "author": "",
+    "author_id": "",
+    "name": "Your Bot Name",
+    "invite": "", 
+    "ranks": [ "Boss", "Staff", "admin" ],
+    "consoleLog": true,
+    "start_rank": "Approved",
+    "approved_rank": "Member",
+    "welcome_users": true, 
+    "user_approve": true,
+    "chat_money": true, 
+    "chat_xp": true, 
+    "wordFilter": true, 
+    "wordFilter_ban": true,
+    "wordFilter_kick": true
+
+}

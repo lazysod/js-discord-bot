@@ -1,0 +1,23 @@
+{
+  "name": "discord_bot",
+  "version": "0.1.1",
+  "description": "Simple Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/AlbaWeb/simple-discord.js-bot/src"
+  },
+  "author": "Lazysod",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.1",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "moment": "^2.27.0",
+    "ms": "^2.1.2",
+    "urban": "^0.3.2"
+  }
+}
