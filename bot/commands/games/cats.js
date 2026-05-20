@@ -7,7 +7,7 @@ module.exports.run = async (Discord, message, args) => {
     if(message.author.bot) return;
     let getJoke = async() => {
         let response = await axios.get(
-            "https://api.lazytools.io/get/cats"
+            "https://api.lazytools.org/get/cats/random"
         );
         var joke = response.data;
         return joke;
@@ -20,7 +20,7 @@ module.exports.run = async (Discord, message, args) => {
 module.exports.config = {
     name: "cats",
     description: "Gives random cat Info",
-    usage: config.prefix + "dice",
+    usage: config.prefix + "cats",
     accessableby: "everyone",
     aliases: []
 }

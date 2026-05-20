@@ -7,7 +7,7 @@ module.exports.run = async (Discord, message, args) => {
     if(message.author.bot) return;
     let getJoke = async() => {
         let response = await axios.get(
-            "https://api.lazytools.io/get/chuck/random/"
+            "https://api.lazytools.org/get/chuck/random"
         );
         let joke = response.data;
         return joke;

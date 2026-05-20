@@ -2,6 +2,7 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const fs = require('fs');
+const path = require('path');
 // config set up
 const conf = require('./config.js');
 const config = conf.config;
@@ -25,13 +26,7 @@ if(config.welcome_users === true){
         schannel.send(welcomEmbed);
     });
 }
-// Start loop
-client.on('ready', () => {
-  const channel = bot.channels.cache.get(config.channel.welcome);
-  setInterval(() => {
-    channel.bulkDelete(99)
-  }, 1000 * 60 * 60 * 24); // in milliseconds
-});
+
 // Start events
 bot.on("ready", async() => {
     const cache = await bot.channels.cache;
@@ -41,7 +36,7 @@ bot.on("ready", async() => {
       maxAge: 10 * 60 * 1000,
       maxUses: 10,
     });
-    fs.writeFileSync("logs/invite-log.txt", JSON.stringify(`discord.gg/${invite.code}`, null, 2));
+    fs.writeFileSync(path.join(__dirname, 'logs/invite-log.txt'), JSON.stringify(`discord.gg/${invite.code}`, null, 2));
     console.log(`discord.gg/${invite.code}`);
 });
 //
@@ -149,7 +144,7 @@ bot.on("message", async message => {
                         count: 0
                     };
                     /**/
-                    fs.writeFile("./json-bin/warning.json", JSON.stringify(warning), (err) => {
+                    fs.writeFile(path.join(__dirname, 'json-bin/warning.json'), JSON.stringify(warning), (err) => {
                         if(err)console.log(err)
                     });
                     // Kick user here
@@ -161,14 +156,15 @@ bot.on("message", async message => {
                     if(message.author == config.author_id) return message.channel.send("Nah! I can't do that to my master!")
                     // time to kick
                     let reason = 'Repeated language violation';
+                    let uaction;
                     if(config.wordFilter_kick === true){
                         // kick
                         message.guild.member(message.author).kick({ reason: reason}).catch(err => console.log(err));
-                        let uaction = 'kicked';
+                        uaction = 'kicked';
                     } else if(config.wordFilter_ban === true) {
                         // user
                         message.guild.member(message.author).ban({ reason: reason}).catch(err => console.log(err));
-                        let uaction = 'banned';
+                        uaction = 'banned';
                     }
                     // add admin notice
                     let warnReportEmbed2 = new Discord.MessageEmbed()
@@ -184,7 +180,7 @@ bot.on("message", async message => {
                     warning[message.author.id] = {
                         count: warning[message.author.id].count +1
                     }
-                    fs.writeFile("./json-bin/warning.json", JSON.stringify(warning), (err) => {
+                    fs.writeFile(path.join(__dirname, 'json-bin/warning.json'), JSON.stringify(warning), (err) => {
                         if(err)console.log(err)
                     });
                 }
@@ -232,9 +228,9 @@ bot.on("message", async message => {
         let baseAmt = Math.floor(Math.random() * 15) + 1;
         if(coinAmt === baseAmt){
             coins[message.author.id] = {
-                coins: coins[message.author.id].coins + coinAmt;
-            }
-            fs.writeFile("./json-bin/coins.json", JSON.stringify(coins), (err) => {
+                coins: coins[message.author.id].coins + coinAmt
+            };
+            fs.writeFile(path.join(__dirname, 'json-bin/coins.json'), JSON.stringify(coins), (err) => {
                 if(err)console.log(err)
             });
             let coinEmbed = new Discord.MessageEmbed()
@@ -269,7 +265,7 @@ bot.on("message", async message => {
             .addField("⭐ Level", curlvl + 1);
             message.channel.send(levelEmbed).then(m => m.delete({ timeout: 8000 }));
         }
-        fs.writeFile("./json-bin/xp.json", JSON.stringify(xp), (err) => {
+        fs.writeFile(path.join(__dirname, 'json-bin/xp.json'), JSON.stringify(xp), (err) => {
             if(err)console.log(err)
         });
     }
