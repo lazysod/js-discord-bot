@@ -1,14 +1,20 @@
 .DS_Store
 .env
-docgen
-docs
 node_modules
 npm-debug.log
 package-lock.json
 *.code-workspace
+
+# Bot sensitive config (copy from config-example.json and fill in real values)
+bot/json-bin/config.json
+
+# Log files
+bot/logs/
+
 # Sublime-github package stores a github token in this file
 # https://packagecontrol.io/packages/sublime-github
 GitHub.sublime-settings
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -19,7 +25,4 @@ GitHub.sublime-settings
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
-# VS Code
-js Discord Bot.code-workspace
 
